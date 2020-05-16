@@ -36,5 +36,6 @@
     <modules>
         <module>org.wso2.carbon.identity.configuration.mgt.core</module>
         <module>org.wso2.carbon.identity.configuration.mgt.endpoint</module>
+        <module>org.wso2.carbon.identity.configuration.mgt.server</module>
     </modules>
 </project>
