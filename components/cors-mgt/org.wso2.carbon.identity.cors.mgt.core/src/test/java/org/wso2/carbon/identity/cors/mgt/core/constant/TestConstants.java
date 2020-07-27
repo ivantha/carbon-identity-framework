@@ -34,10 +34,12 @@ public class TestConstants {
             "http://abc.com",
             "https://pqr.com",
             "http://xyz.com");
-    public static final int TENANT_ID = -1111;
-    public static final String TENANT_DOMAIN_NAME = "abc.com";
-    public static final String APP_ID_1 = "test_app_1";
-    public static final String APP_ID_2 = "test_app_2";
+    public static final String SAMPLE_TENANT_DOMAIN_NAME = "abc.com";
+    public static final int SAMPLE_TENANT_ID = 4;
+    public static final int SAMPLE_APP_ID_1 = 11;
+    public static final String SAMPLE_APP_RESOURCE_ID_1 = "c0881fad-fb6f-4d08-b4ad-2680364bd998";
+    public static final int SAMPLE_APP_ID_2 = 22;
+    public static final String SAMPLE_APP_RESOURCE_ID_2 = "4d34790b-8d16-4e03-b6c5-476c0bf31038";
 
     private TestConstants() {
 

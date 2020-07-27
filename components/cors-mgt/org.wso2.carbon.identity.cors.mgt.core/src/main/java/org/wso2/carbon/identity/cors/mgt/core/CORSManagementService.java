@@ -108,6 +108,9 @@ public interface CORSManagementService {
     void deleteApplicationCORSOrigins(String tenantDomain, String appId, List<String> originIds)
             throws CORSManagementServiceException;
 
+    List<CORSOrigin.Application> getCORSOriginApplications(String corsOriginId)
+            throws CORSManagementServiceException;
+
     /**
      * Get the CORS configurations of a tenant.
      *

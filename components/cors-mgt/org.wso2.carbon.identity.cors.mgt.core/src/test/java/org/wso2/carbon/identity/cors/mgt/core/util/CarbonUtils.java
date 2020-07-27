@@ -39,7 +39,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.wso2.carbon.base.MultitenantConstants.SUPER_TENANT_DOMAIN_NAME;
-import static org.wso2.carbon.identity.cors.mgt.core.constant.TestConstants.APP_ID_2;
+import static org.wso2.carbon.base.MultitenantConstants.SUPER_TENANT_ID;
+import static org.wso2.carbon.identity.cors.mgt.core.constant.TestConstants.SAMPLE_APP_ID_1;
+import static org.wso2.carbon.identity.cors.mgt.core.constant.TestConstants.SAMPLE_APP_RESOURCE_ID_1;
+import static org.wso2.carbon.identity.cors.mgt.core.constant.TestConstants.SAMPLE_APP_RESOURCE_ID_2;
+import static org.wso2.carbon.identity.cors.mgt.core.constant.TestConstants.SAMPLE_TENANT_DOMAIN_NAME;
+import static org.wso2.carbon.identity.cors.mgt.core.constant.TestConstants.SAMPLE_TENANT_ID;
 
 /**
  * Utility class for Carbon functions.
@@ -77,7 +82,10 @@ public class CarbonUtils {
 
         mockStatic(IdentityTenantUtil.class);
         IdentityTenantUtil identityTenantUtil = mock(IdentityTenantUtil.class);
-        when(IdentityTenantUtil.getTenantDomain(any(Integer.class))).thenReturn(SUPER_TENANT_DOMAIN_NAME);
+        when(IdentityTenantUtil.getTenantDomain(SUPER_TENANT_ID)).thenReturn(SUPER_TENANT_DOMAIN_NAME);
+        when(IdentityTenantUtil.getTenantDomain(SAMPLE_TENANT_ID)).thenReturn(SAMPLE_TENANT_DOMAIN_NAME);
+        when(IdentityTenantUtil.getTenantId(SUPER_TENANT_DOMAIN_NAME)).thenReturn(SUPER_TENANT_ID);
+        when(IdentityTenantUtil.getTenantId(SAMPLE_TENANT_DOMAIN_NAME)).thenReturn(SAMPLE_TENANT_ID);
     }
 
     public static void mockApplicationManagementService() {
@@ -87,9 +95,11 @@ public class CarbonUtils {
         mockStatic(ApplicationManagementService.class);
         when(ApplicationManagementService.getInstance()).thenReturn(applicationManagementService);
         try {
-            when(applicationManagementService.getApplicationBasicInfoByResourceId(any(String.class),
-                    any(String.class))).thenReturn(new ApplicationBasicInfo());
-            when(applicationManagementService.getApplicationBasicInfoByResourceId(eq(APP_ID_2),
+            ApplicationBasicInfo applicationBasicInfo1 = new ApplicationBasicInfo();
+            applicationBasicInfo1.setApplicationId(SAMPLE_APP_ID_1);
+            when(applicationManagementService.getApplicationBasicInfoByResourceId(eq(SAMPLE_APP_RESOURCE_ID_1),
+                    any(String.class))).thenReturn(applicationBasicInfo1);
+            when(applicationManagementService.getApplicationBasicInfoByResourceId(eq(SAMPLE_APP_RESOURCE_ID_2),
                     any(String.class))).thenReturn(null);
         } catch (IdentityApplicationManagementException e) {
             if (log.isDebugEnabled()) {
